@@ -7,8 +7,5 @@ public class Settings {
     public static final String themeLetter = "Simbirsoft theme";
     public static final String eMail = "kosh-ev@yandex.ru";
 
-
-
-
 }
 

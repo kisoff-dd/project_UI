@@ -22,20 +22,17 @@ public class ProfilePage {
     @FindBy(xpath ="//*[@href='https://mail.yandex.ru']") //определение локатора почта
     private WebElement userEmail;
 
-    @FindBy(xpath = "//*[contains(@class, 'menu-item_action_exit menu__item menu__item_type_link')]")
-    private WebElement logoutBtn; //определение локатора кнопки выхода из аккаунта
+   // @FindBy(xpath = "//*[contains(@class, 'menu-item_action_exit menu__item menu__item_type_link')]")
+   // private WebElement logoutBtn; //определение локатора кнопки выхода из аккаунта
 
-    public String getUserName() { //метод для получения имени пользователя из меню пользовател
+  /*  public String getUserName() { //метод для получения имени пользователя из меню пользовател
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'account__name_hasAccentLetter')]")));
         String userName = userMenu.getText();
-        return userName; }
+        return userName; }*/
 
-    public void entryEmail() { //метод для нажатия кнопки почта
-        userEmail.click(); }
-
-    public void entryMenu() { //метод для нажатия кнопки меню пользователя
-        userMenu.click(); }
-
-    public void userLogout() { //метод для нажатия кнопки выхода из аккаунта
-        logoutBtn.click(); } }
+    public void entryEmail() {                      // метод для нажатия кнопки меню
+        userMenu.click();                           // нажатие кнопки меню пользователя
+        userEmail.click();                          // нажатие папки почта
+    }
+}
