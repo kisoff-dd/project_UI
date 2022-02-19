@@ -1,14 +1,10 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
 
 public class IncomingEmailPage {
 
@@ -37,29 +33,28 @@ public class IncomingEmailPage {
     @FindBy(xpath = "//*[@class='mail-MessagesSearchInfo-Title_misc nb-with-xs-left-gap']")
     private WebElement numberEmail;                      //определение локатора количество писем
 
-    @FindBy(xpath = "//*[@href=\"#compose\"]")         //определение локатора написать письмо //span[text()='Написать']
+    @FindBy(xpath = "//*[@href=\"#compose\"]")         //определение локатора написать письмо +
     private WebElement writeEmail;
 
 
-    public String clickMailSearch(String text) {          // метод для нажатия кнопки поиск
+    public String clickMailSearch(String text) throws InterruptedException {    // метод для нажатия кнопки поиск
         mailSearch.click();
         advancedSearch.click();                           // нажатие кнопки "расширенный поиск"
         filterFolders.click();                            // нажатие кнопки фильтр Папки
         filterIncoming.click();                           // нажатие кнопки фильтр Входящая
         searchInputText.sendKeys(text);                   // ввода параметра поиска(тема письма)
         searchInputText.submit();
-        String countFirst = getCountEmail();
-        writeEmail.click();
-        //driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);//ожидаем полной загрузки старницы
-
-       // Integer count = Integer.parseInt(s);
-        // StringBuffer count = new StringBuffer(s);
-       // count = count.replaceAll("\\D+","");
+        Thread.sleep(2000);                         //ожидаем полной загрузки старницы
+        String countFirst = numberEmail.getText();
+        writeEmail.click();                               // нажатие кнопки Написать(письмо)
         return countFirst;
     }
-
-    public String getCountEmail() {          // метод для нажатия кнопки поиск
-        String count = numberEmail.getText();             // взятие кол-ва писем
-        return count ;
+    public Integer getCountEmailBefore(String count) {                       // метод сколько писем в начале
+        //String count ;                    // получаем символы с буквами
+        return (Integer.parseInt(count.replaceAll("\\D+","")));  // удаляем буквы, переводим в число
+    }
+    public Integer getCountEmailAfter() {                       // метод сколько писем после отправки письма
+        String count = numberEmail.getText();                    // получаем символы с буквами
+        return (Integer.parseInt(count.replaceAll("\\D+","")));  // удаляем буквы, переводим в число
     }
 }
