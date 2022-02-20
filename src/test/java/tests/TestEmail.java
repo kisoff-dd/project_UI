@@ -35,17 +35,19 @@ public class TestEmail {
     @Test
     public void testEmail() {
         try {
-            loginPage.inputLogin(Settings.loginEmail, Settings.passwordEmail); // логинемся в почте
-            profilePage.entryEmail();                                          // переходим по меню в почту
-            String count = incomingEmailPage.clickMailSearch(Settings.themeLetter);//ищем письма с темой, возвращаем колво
-            int countFirst = (incomingEmailPage.getCountEmailBefore(count));
-            writeEmailPage.newEmail(Settings.eMail, Settings.themeLetter, count);// пишем новое письмо
 
-            Assert.assertEquals(countFirst,(incomingEmailPage.getCountEmailAfter()-1));
+            loginPage.inputLogin(Settings.loginEmail, Settings.passwordEmail);      // логинемся в почте
+            profilePage.entryEmail();                                               // переходим по меню в почту
+            String count = incomingEmailPage.clickMailSearch(Settings.themeLetter); // ищем письма с темой, возвращаем строку колво
+            int countFirst = (incomingEmailPage.getCountEmailBefore(count));        // вычисляем число
+            writeEmailPage.newEmail(Settings.eMail, Settings.themeLetter, count);   // пишем новое письмо
+
+            Assert.assertEquals(countFirst,(incomingEmailPage.getCountEmailAfter()-1));//для проверки теста на крах поменять 1 на 2
 
         } catch (Exception e) {
-            System.out.println("что-то где то поламалось УБРАТЬ ПЕРЕД СДАЧЕЙ ПРОЕКТА " + e.getMessage());
+            System.out.println("что-то где то поламалось УБРАТЬ В финальном релизе " + e.getMessage());
         }
+
 
     }
         @AfterTest(enabled = true)

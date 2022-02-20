@@ -5,7 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
+
 
 public class LoginPage {                            // конструктор класса, занимающийся инициализацией полей класса
 
@@ -27,7 +28,7 @@ public class LoginPage {                            // конструктор к
     public void inputLogin(String login, String passwd) {       //метод для ввода логина
         loginField.sendKeys(login);
         loginBtn.click();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);//ожидаем полной загрузки старницы
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));//ожидаем полной загрузки старницы
         passwdField.sendKeys(passwd);
         loginBtn.click();
     }

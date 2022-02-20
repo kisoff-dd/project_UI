@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.Duration;
+
+
 
 public class WriteEmailPage {
     public WebDriver driver;
@@ -13,7 +16,7 @@ public class WriteEmailPage {
         PageFactory.initElements(driver, this);
         this.driver = driver; }
 
-    @FindBy(xpath = "//*[@id=\"js-apps-container\"]/div[2]/div[10]/div/div/div[1]/div/div[2]/div/div[1]/div[1]/div[1]/div/div[1]/div[1]/div[1]/div/div/div/div/div")
+    @FindBy(xpath = "//div[contains(@class,'MultipleAddressesDesktop-Field ComposeYabblesField')]/div")
     private WebElement addressString;                       // определение локатора поля ввода адреса
 
     @FindBy(xpath = "//*[@class='ComposeSubject']/div/div/input") // определение локатора поля ввода темы письма
@@ -37,6 +40,7 @@ public class WriteEmailPage {
         sendEmail.click();
         Thread.sleep(3000);                          // ожидаем получение отправленного письма
         refresh.click();                                   // обновляем список
-        Thread.sleep(1000);                          // не успевает обновить отсортированный список входящих
+        Thread.sleep(3000);                          // не успевает обновить отсортированный список входящих
+
     }
 }
