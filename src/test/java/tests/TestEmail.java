@@ -52,7 +52,7 @@ public class TestEmail {
     }
         @AfterTest(enabled = true)
         public void close () {
-            profilePage.userLogout();
+           // profilePage.userLogout();
             driver.quit();
         }
 }
