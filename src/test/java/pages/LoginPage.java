@@ -16,6 +16,9 @@ public class LoginPage {                            // конструктор к
         PageFactory.initElements(driver, this);
         this.driver = driver; }
 
+    @FindBy(xpath = "//*[@id=\"index-page-container\"]/div/div[2]/div/div/div[4]/a[2]")
+    private WebElement enter;
+
     @FindBy(xpath = "//*[contains(@id, 'passp-field-login')]")  //определение локатора поля ввода логина
     private WebElement loginField;
 
@@ -26,6 +29,7 @@ public class LoginPage {                            // конструктор к
     private WebElement passwdField;
 
     public void inputLogin(String login, String passwd) {       //метод для ввода логина
+        enter.click();
         loginField.sendKeys(login);
         loginBtn.click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));//ожидаем полной загрузки старницы

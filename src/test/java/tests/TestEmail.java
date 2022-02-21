@@ -37,7 +37,7 @@ public class TestEmail {
         try {
 
             loginPage.inputLogin(Settings.loginEmail, Settings.passwordEmail);      // логинемся в почте
-            profilePage.entryEmail();                                               // переходим по меню в почту
+          //  profilePage.entryEmail();                                               // переходим по меню в почту
             String count = incomingEmailPage.clickMailSearch(Settings.themeLetter); // ищем письма с темой, возвращаем строку колво
             int countFirst = (incomingEmailPage.getCountEmailBefore(count));        // вычисляем число
             writeEmailPage.newEmail(Settings.eMail, Settings.themeLetter, count);   // пишем новое письмо

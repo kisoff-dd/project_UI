@@ -19,7 +19,8 @@ public class ProfilePage {
         PageFactory.initElements(driver, this);
         this.driver = driver; }
 
-    @FindBy(xpath = "//*[contains(@class, 'user-pic__image')]") // определение локатора меню пользователя
+    @FindBy(xpath = "//*[@href=\"https://passport.yandex.ru\"]/div") // определение локатора меню пользователя
+    //@FindBy(xpath = "//*[contains(@class, 'user-pic__image')]") // определение локатора меню пользователя
     private WebElement userMenu;
 
     @FindBy(xpath ="//*[@href='https://mail.yandex.ru']")       // определение локатора почта
