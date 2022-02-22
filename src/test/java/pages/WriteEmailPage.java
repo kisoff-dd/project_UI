@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
 
+import static tools.Waiting.waitingElement;
 
 
 public class WriteEmailPage {
@@ -22,6 +23,7 @@ public class WriteEmailPage {
     @FindBy(xpath = "//*[@class='ComposeSubject']/div/div/input") // определение локатора поля ввода темы письма
     private WebElement themeEmail;
 
+   // @FindBy(xpath = "//*[@placeholder=\"Напишите что-нибудь\"]//child::div")//*[@placeholder="Напишите что-нибудь"]//child::div
     @FindBy(xpath = "//*[@id=\"cke_1_contents\"]/div")      // определение локатора поля ввода текста письма
     private WebElement bodyEmail;
 
@@ -30,7 +32,7 @@ public class WriteEmailPage {
 
     @FindBy(xpath = "//*[@class='Layout-m__root--2L1me qa-LeftColumn-MainButtons js-compose-button-container']/button")
     private WebElement refresh;                            // определение локатора проверить новые письма
-
+    //span[text()='Новое письмо']
                                                            // метод создания нового письма
     public void newEmail(String eMail, String themeLetter, String count) throws InterruptedException {
         Thread.sleep(2000);                          // не успевает обновить отсортированный список входящих

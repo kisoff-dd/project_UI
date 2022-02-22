@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.time.Duration;
 
 import static tests.TestEmail.writeEmailPage;
+import static tools.Waiting.waitingElement;
 
 
 public class IncomingEmailPage {
@@ -45,13 +46,15 @@ public class IncomingEmailPage {
 
 
     public String clickMailSearch(String text) throws InterruptedException {    // метод для нажатия кнопки поиск
+        waitingElement("//*[@class='mail-Search']", driver).isDisplayed();
         mailSearch.click();                               // нажатие кнопки поиск
         advancedSearch.click();                           // нажатие кнопки "расширенный поиск"
         filterFolders.click();                            // нажатие кнопки фильтр Папки
         filterIncoming.click();                           // нажатие кнопки фильтр Входящая
         searchInputText.sendKeys(text);                   // ввода параметра поиска(тема письма)
         searchInputText.submit();
-        Thread.sleep(3000);                         // ожидаем полной загрузки старницы
+        waitingElement("//*[@class='mail-MessagesSearchInfo_Summary']", driver).isDisplayed();
+        //waitingElement("//*[contains(text(),'Результаты поиска «Simbirsoft theme» в папке «Входящие» ')]", driver).isDisplayed();
         String countFirst = numberEmail.getText();        // получаем кол-во писем символьно буквенное
         writeEmail.click();                               // нажатие кнопки Написать(письмо)
         return countFirst;                                // возвращаем значение  для темы нового письма

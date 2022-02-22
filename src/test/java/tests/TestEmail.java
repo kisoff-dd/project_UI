@@ -50,9 +50,9 @@ public class TestEmail {
 
 
     }
-        @AfterTest(enabled = true)
+        @AfterTest(enabled = false)
         public void close () {
-           // profilePage.userLogout();
+           //profilePage.userLogout();
             driver.quit();
         }
 }
