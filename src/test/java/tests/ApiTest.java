@@ -15,15 +15,10 @@ public class ApiTest {
 
     @Test
     public void getRequestWithQueryParam() {
-
+        //сревниваем почту из конфига и полученый результат
         Assert.assertEquals(Config.email, GetData.data(Config.first_name,Config.last_name),"тест1 данные не совпадают");
         Assert.assertEquals(Config.email2, GetData.data(Config.first_name2,Config.last_name2),"тест2 данные не совпадают");
     }
-
-
-    //  System.out.println( GetData.data(Config.first_name2,Config.last_name2));
-
-
 
 }
 
