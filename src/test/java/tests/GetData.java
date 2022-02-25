@@ -14,13 +14,13 @@ public class GetData {
         do {
             Response response = given()
                     .contentType(ContentType.JSON)
-                    .when().get("/users?page=" + page)
+                    .when().get("/users?page=" + page)                  //перебор страниц
                     .then()
                     .extract().response();
             String text = response.jsonPath()
                     .getString("data.find{(it.first_name =='" + fistName + "')&&" +
-                            "(it.last_name =='" + last_name + "')}.email");
-            if (text != null) {
+                            "(it.last_name =='" + last_name + "')}.email");// если имя и фамилия совпадает забираем почту
+            if (text != null) {                                            // если значение не пустое возвращаем результат
                 return text;
             }
             page++;
