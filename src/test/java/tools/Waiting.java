@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public class Waiting {  //класс явного ожидания(но не более 10 секунд) элементов, на входе задается локатор
 
-    public static WebElement waitingElement(String locator, WebDriver driver) {
+    public static WebElement waitingElem(String locator, WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
     }

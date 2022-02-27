@@ -5,9 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 import java.time.Duration;
 
-import static tools.Waiting.waitingElement;
+import static tools.Waiting.waitingElem;
 
 
 public class WriteEmailPage {
@@ -23,8 +24,8 @@ public class WriteEmailPage {
     @FindBy(xpath = "//*[@class='ComposeSubject']/div/div/input") // определение локатора поля ввода темы письма
     private WebElement themeEmail;
 
-   // @FindBy(xpath = "//*[@placeholder=\"Напишите что-нибудь\"]//child::div")//*[@placeholder="Напишите что-нибудь"]//child::div
-    @FindBy(xpath = "//*[@id=\"cke_1_contents\"]/div")      // определение локатора поля ввода текста письма
+   // @FindBy(xpath = "//*[@placeholder='Напишите что-нибудь']//child::div")//*[@placeholder="Напишите что-нибудь"]//child::div
+    @FindBy(xpath = "//*[@id=\"cke_1_contents\"]/div/div")      // определение локатора поля ввода текста письма
     private WebElement bodyEmail;
 
     @FindBy(xpath = "//*[@class='Button2 Button2_pin_circle-circle Button2_view_default Button2_size_l']")
@@ -34,15 +35,15 @@ public class WriteEmailPage {
     private WebElement refresh;                            // определение локатора проверить новые письма
     //span[text()='Новое письмо']
                                                            // метод создания нового письма
-    public void newEmail(String eMail, String themeLetter, String count) throws InterruptedException {
-        Thread.sleep(2000);                          // не успевает обновить отсортированный список входящих
+    public void newEmail(String eMail, String themeLetter, String count)  {
+        waitingElem("//*[@id=\"cke_1_contents\"]/div/div", driver).isDisplayed();
         bodyEmail.sendKeys("Найдено "+ count ); // заполнение тела письма
         themeEmail.sendKeys(themeLetter);                  // заполнение темы
         addressString.sendKeys(eMail);                     // заполнение адреса
         sendEmail.click();
-        Thread.sleep(3000);                          // ожидаем получение отправленного письма
+        waitingElem("//*[@id=\"cke_1_contents\"]/div/div", driver).isDisplayed();
         refresh.click();                                   // обновляем список
-        Thread.sleep(3000);                          // не успевает обновить отсортированный список входящих
+        waitingElem("//*[@id=\"cke_1_contents\"]/div/div", driver).isDisplayed();
 
     }
 }

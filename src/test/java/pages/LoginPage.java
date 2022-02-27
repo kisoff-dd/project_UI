@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
 
-import static tools.Waiting.waitingElement;
+import static tools.Waiting.waitingElem;
 
 
 public class LoginPage {                            // конструктор класса, занимающийся инициализацией полей класса
@@ -34,7 +34,7 @@ public class LoginPage {                            // конструктор к
         enter.click();
         loginField.sendKeys(login);
         loginBtn.click();
-        waitingElement("//*[@id=\"passp-field-passwd\"]", driver).isDisplayed();
+        waitingElem("//*[@id=\"passp-field-passwd\"]", driver).isDisplayed();
         passwdField.sendKeys(passwd);
         loginBtn.click();
     }

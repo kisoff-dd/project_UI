@@ -5,10 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.time.Duration;
 
-import static tests.TestEmail.writeEmailPage;
-import static tools.Waiting.waitingElement;
+import static tools.Waiting.waitingElem;
 
 
 public class IncomingEmailPage {
@@ -45,16 +43,15 @@ public class IncomingEmailPage {
     private WebElement refresh;                            // определение локатора проверить новые письма
 
 
-    public String clickMailSearch(String text) throws InterruptedException {    // метод для нажатия кнопки поиск
-        waitingElement("//*[@class='mail-Search']", driver).isDisplayed();
+    public String clickMailSearch(String text) {    // метод для нажатия кнопки поиск
+        waitingElem("//*[@class='mail-Search']", driver).isDisplayed();
         mailSearch.click();                               // нажатие кнопки поиск
         advancedSearch.click();                           // нажатие кнопки "расширенный поиск"
         filterFolders.click();                            // нажатие кнопки фильтр Папки
         filterIncoming.click();                           // нажатие кнопки фильтр Входящая
         searchInputText.sendKeys(text);                   // ввода параметра поиска(тема письма)
         searchInputText.submit();
-        waitingElement("//*[@class='mail-MessagesSearchInfo_Summary']", driver).isDisplayed();
-        //waitingElement("//*[contains(text(),'Результаты поиска «Simbirsoft theme» в папке «Входящие» ')]", driver).isDisplayed();
+        waitingElem("//*[@class='mail-MessagesSearchInfo_Summary']", driver).isDisplayed();
         String countFirst = numberEmail.getText();        // получаем кол-во писем символьно буквенное
         writeEmail.click();                               // нажатие кнопки Написать(письмо)
         return countFirst;                                // возвращаем значение  для темы нового письма
