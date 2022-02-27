@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.*;
 
 public class GetData {
 
-    public static String data (String fistName, String last_name) {
+    public static String data (String firstName, String lastName) {
         int page = 1;
         int total_pages;
         String text;
@@ -20,8 +20,8 @@ public class GetData {
                     .then()
                     .extract().response();
             text = response.jsonPath()
-                    .getString("data.find{(it.first_name =='" + fistName + "')&&" +
-                            "(it.last_name =='" + last_name + "')}.email");// если имя и фамилия совпадает забираем почту
+                    .getString("data.find{(it.first_name =='" + firstName + "')&&" +
+                            "(it.last_name =='" + lastName + "')}.email");// если имя и фамилия совпадает забираем почту
             total_pages = response.jsonPath()                              // определяем кол-во страниц на сайте для цикла
                    .getInt("total_pages");
             if (text != null) {                                            // если значение не пустое возвращаем результат
