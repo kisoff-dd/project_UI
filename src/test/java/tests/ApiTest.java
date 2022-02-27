@@ -14,10 +14,13 @@ public class ApiTest {
     }
 
     @Test
-    public void getRequestWithQueryParam() {
-        //сревниваем почту из конфига и полученый результат
-        Assert.assertEquals(Config.email, GetData.data(Config.first_name,Config.last_name),"тест1 данные не совпадают");
-        Assert.assertEquals(Config.email2, GetData.data(Config.first_name2,Config.last_name2),"тест2 данные не совпадают");
+    public void getRequest() {
+        //сревниваем полученый результат и почту из конфига
+        Assert.assertEquals(GetData.data(Config.first_name,Config.last_name), Config.email,"тест1 данные не совпадают");
+    }
+    @Test
+    public void getRequest2() {
+        Assert.assertEquals(GetData.data(Config.first_name2,Config.last_name2), Config.email2,"тест2 данные не совпадают");
     }
 
 }
