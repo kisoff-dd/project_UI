@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +12,7 @@ import static tools.Waiting.waitingElem;
 
 public class LoginPage {                            // конструктор класса, занимающийся инициализацией полей класса
 
-    String xPathFieldPasswd = "//*[@id=\"passp-field-passwd\"]";
+    By xPathFieldPasswd = By.xpath("//*[@id=\"passp-field-passwd\"]");
 
     public WebDriver driver;
 

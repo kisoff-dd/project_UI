@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,8 +12,9 @@ import static tools.Waiting.waitingElem;
 
 public class IncomingEmailPage {
 
-    String xPathSearch="//*[@class='mail-Search']";
-    String xPathSummary="//*[@class='mail-MessagesSearchInfo_Summary']";
+    By xPathSearch = By.xpath("//*[@class='mail-Search']");
+    By xPathSummary = By.xpath("//*[@class='mail-MessagesSearchInfo_Summary']");
+
 
     public WebDriver driver;
 
@@ -29,8 +31,7 @@ public class IncomingEmailPage {
     @FindBy(xpath ="//*[@title='расширенный поиск']")
     private WebElement advancedSearch;                   // определение локатора "расширенный поиск"
 
-    @FindBy(xpath ="//*[@id=\"js-apps-container\"]/div[2]/div[7]/div/div[3]/div[3]/div[1]/div/div/button[3]")
-   //FindBy(xpath ="//button[contains(@class,'mail-AdvancedSearch__button_active')]")
+    @FindBy(xpath ="//button[contains(@class,'mail-AdvancedSearch__button_active')]")
     private WebElement filterFolders;                    // определение локатора фильтр папки *
 
     @FindBy(xpath ="//div[contains(@class,'control menu__item menu__item_type_option')]/span[contains(text(),'Входящие')]")
@@ -42,7 +43,7 @@ public class IncomingEmailPage {
     @FindBy(xpath = "//*[@href=\"#compose\"]")           // определение локатора написать письмо
     private WebElement writeEmail;
 
-    //*[@class='Layout-m__root--2L1me qa-LeftColumn-MainButtons js-compose-button-container']/button
+
     @FindBy(xpath = "//button[contains(@class,'qa-LeftColumn-SyncButton')]")
     private WebElement refresh;                            // определение локатора проверить новые письма
 

@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,8 +12,8 @@ import static tools.Waiting.waitingElem;
 public class WriteEmailPage {
     public WebDriver driver;
 
-    String xPathTextEmail = "//*[@id=\"cke_1_contents\"]/div/div";
-    String xPathNewMail = "//*[@class='mail-MessagesSearchInfo-Title_misc nb-with-xs-left-gap']";
+    By xPathTextEmail = By.xpath("//*[@id=\"cke_1_contents\"]/div/div");
+    By xPathNewMail = By.xpath("//*[@class='mail-MessagesSearchInfo-Title_misc nb-with-xs-left-gap']");
 
     public WriteEmailPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
