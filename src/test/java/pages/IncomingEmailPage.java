@@ -11,6 +11,8 @@ import static tools.Waiting.waitingElem;
 
 public class IncomingEmailPage {
 
+    String xPathSearch="//*[@class='mail-Search']";
+    String xPathSummary="//*[@class='mail-MessagesSearchInfo_Summary']";
 
     public WebDriver driver;
 
@@ -28,6 +30,7 @@ public class IncomingEmailPage {
     private WebElement advancedSearch;                   // определение локатора "расширенный поиск"
 
     @FindBy(xpath ="//*[@id=\"js-apps-container\"]/div[2]/div[7]/div/div[3]/div[3]/div[1]/div/div/button[3]")
+   //FindBy(xpath ="//button[contains(@class,'mail-AdvancedSearch__button_active')]")
     private WebElement filterFolders;                    // определение локатора фильтр папки *
 
     @FindBy(xpath ="//div[contains(@class,'control menu__item menu__item_type_option')]/span[contains(text(),'Входящие')]")
@@ -39,19 +42,20 @@ public class IncomingEmailPage {
     @FindBy(xpath = "//*[@href=\"#compose\"]")           // определение локатора написать письмо
     private WebElement writeEmail;
 
-    @FindBy(xpath = "//*[@class='Layout-m__root--2L1me qa-LeftColumn-MainButtons js-compose-button-container']/button")
+    //*[@class='Layout-m__root--2L1me qa-LeftColumn-MainButtons js-compose-button-container']/button
+    @FindBy(xpath = "//button[contains(@class,'qa-LeftColumn-SyncButton')]")
     private WebElement refresh;                            // определение локатора проверить новые письма
 
 
     public String clickMailSearch(String text) {    // метод для нажатия кнопки поиск
-        waitingElem("//*[@class='mail-Search']", driver).isDisplayed();
+        waitingElem(xPathSearch, driver).isDisplayed();
         mailSearch.click();                               // нажатие кнопки поиск
         advancedSearch.click();                           // нажатие кнопки "расширенный поиск"
         filterFolders.click();                            // нажатие кнопки фильтр Папки
         filterIncoming.click();                           // нажатие кнопки фильтр Входящая
         searchInputText.sendKeys(text);                   // ввода параметра поиска(тема письма)
         searchInputText.submit();
-        waitingElem("//*[@class='mail-MessagesSearchInfo_Summary']", driver).isDisplayed();
+        waitingElem(xPathSummary, driver).isDisplayed();
         String countFirst = numberEmail.getText();        // получаем кол-во писем символьно буквенное
         writeEmail.click();                               // нажатие кнопки Написать(письмо)
         return countFirst;                                // возвращаем значение  для темы нового письма

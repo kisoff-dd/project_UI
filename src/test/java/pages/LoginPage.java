@@ -5,12 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.time.Duration;
 
 import static tools.Waiting.waitingElem;
 
 
 public class LoginPage {                            // конструктор класса, занимающийся инициализацией полей класса
+
+    String xPathFieldPasswd = "//*[@id=\"passp-field-passwd\"]";
 
     public WebDriver driver;
 
@@ -18,7 +19,7 @@ public class LoginPage {                            // конструктор к
         PageFactory.initElements(driver, this);
         this.driver = driver; }
 
-    @FindBy(xpath = "//*[@id=\"index-page-container\"]/div/div[2]/div/div/div[4]/a[2]")
+    @FindBy(xpath = "//a[contains(@class,\"Enter with-shadow\")]")
     private WebElement enter;
 
     @FindBy(xpath = "//*[contains(@id, 'passp-field-login')]")  //определение локатора поля ввода логина
@@ -34,7 +35,7 @@ public class LoginPage {                            // конструктор к
         enter.click();
         loginField.sendKeys(login);
         loginBtn.click();
-        waitingElem("//*[@id=\"passp-field-passwd\"]", driver).isDisplayed();
+        waitingElem(xPathFieldPasswd, driver).isDisplayed();
         passwdField.sendKeys(passwd);
         loginBtn.click();
     }

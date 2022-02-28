@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.IncomingEmailPage;
 import pages.LoginPage;
-import pages.ProfilePage;
 import pages.WriteEmailPage;
 import tools.GetChromeDriver;
 import tools.Settings;
@@ -17,14 +16,12 @@ import tools.Settings;
 public class TestEmail {
     public static WebDriver driver = GetChromeDriver.getcromedriver();
     public static LoginPage loginPage;
-    public static ProfilePage profilePage;
     public static IncomingEmailPage incomingEmailPage;
     public static WriteEmailPage writeEmailPage;
 
-    @BeforeTest(enabled = true)
+    @BeforeTest
     public static void setup() {
         loginPage = new LoginPage(driver);
-        profilePage = new ProfilePage(driver);
         incomingEmailPage = new IncomingEmailPage(driver);
         writeEmailPage = new WriteEmailPage(driver);
         driver.get(Settings.loginPage);
@@ -36,20 +33,15 @@ public class TestEmail {
     public void testEmail() {
 
             loginPage.inputLogin(Settings.loginEmail, Settings.passwordEmail);      // логинемся в почте
-        //  profilePage.entryEmail();                                               // переходим по меню в почту
             String count = incomingEmailPage.clickMailSearch(Settings.themeLetter); // ищем письма с темой, возвращаем строку колво
             int countFirst = (incomingEmailPage.getCountEmailBefore(count));        // вычисляем число
             writeEmailPage.newEmail(Settings.eMail, Settings.themeLetter, count);   // пишем новое письмо
 
-            Assert.assertEquals(countFirst,(incomingEmailPage.getCountEmailAfter()-1));//для проверки теста на крах поменять 1 на 2
-
-
-
-
+            Assert.assertEquals(countFirst,(incomingEmailPage.getCountEmailAfter()-1),"количество писем не изменилось");
     }
-        @AfterTest(enabled = true)
-        public void close () {
-           //profilePage.userLogout();
-            driver.quit();
+
+    @AfterTest(enabled = false)
+    public void close () {
+           driver.quit();
         }
 }
