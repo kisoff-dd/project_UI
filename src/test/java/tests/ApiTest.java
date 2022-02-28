@@ -8,10 +8,6 @@ import org.testng.annotations.Test;
 
 public class ApiTest {
 
-    @BeforeTest
-    public static void setup() {
-        RestAssured.baseURI = "https://reqres.in/api";
-    }
 
     @Test
     public void getRequest() {
@@ -20,7 +16,8 @@ public class ApiTest {
     }
     @Test
     public void getRequest2() {
-        Assert.assertEquals(GetData.data(Config.first_name2,Config.last_name2), Config.email2,"тест2 данные не совпадают");
+        Assert.assertNotEquals(GetData.data(Config.first_name2,Config.last_name2), Config.email2,"тест2 данные не совпадают");
+
     }
 
 }
