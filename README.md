@@ -1,4 +1,4 @@
-# project_UI  Selenium, TestNG, Maven, jenkins . РЕШЕНИЕ В ВЕТКЕ develop! project_API РЕШЕНИЕ В ВЕТКЕ developAPI
+# project_UI  Selenium, TestNG, Maven, jenkins . РЕШЕНИЕ В ВЕТКЕ develop! + project_API T,M,j, RestAssured РЕШЕНИЕ В ВЕТКЕ developAPI
 
 1. С помощью Selenium и интерфейса почты, тест автоматически отправляет новое 
 письмо с темой “Simbirsoft theme” и текстом виде: "Найдено n писем\ьма ", 
